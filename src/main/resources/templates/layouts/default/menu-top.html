@@ -1,0 +1,109 @@
+<nav class="navbar navbar-expand-lg bg-light">
+
+	<div class="navbar-nav col-2">
+		<div>&nbsp;</div>		
+		<a class="navbar-brand" href="/">
+			<i class="bi bi-sun"></i>
+			SimpleDoc
+		</a>
+		<button
+			class="navbar-toggler"
+			type="button"
+			data-bs-toggle="collapse"
+			data-bs-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent"
+			aria-expanded="false"
+			aria-label="Toggle navigation"
+		>
+			<span class="navbar-toggler-icon"></span>
+		</button>
+	</div>
+	<div class="col"></div>
+	<form class="col d-flex" role="search">
+		<input
+			class="form-control me-2"
+			type="search"
+			placeholder="Пошук"
+			aria-label="Search"
+		/>
+		<button class="btn btn-outline-success" type="submit">
+			<i class="bi bi-search"></i>
+		</button>
+	</form>
+
+	<ul class="navbar-nav col d-flex">
+		<li class="nav-item dropdown">
+			<a
+				class="nav-link dropdown-toggle"
+				data-bs-toggle="dropdown"
+				href="#"
+				id="navbarDropdown"
+				aria-expanded="false"
+			>
+				<i class="bi bi-calendar"></i>
+			</a>
+		</li>
+		<li class="nav-item dropdown">
+			<a
+				class="nav-link dropdown-toggle"
+				data-bs-toggle="dropdown"
+				href="#"
+				id="dropdown01"
+				aria-expanded="false"
+			>
+				<i class="bi bi-chat"></i>
+			</a>
+		</li>
+		<li class="nav-item dropdown">
+			<a
+				class="nav-link dropdown-toggle"
+				data-bs-toggle="dropdown"
+				href="#"
+				id="dropdown01"
+				aria-expanded="false"
+			>
+				<i class="bi bi-envelope"></i>
+			</a>
+		</li>
+		<li class="nav-item dropdown">
+			<a
+				class="nav-link dropdown-toggle"
+				data-bs-toggle="dropdown"
+				href="#"
+				id="dropdown01"
+				aria-expanded="false"
+			>
+				<i class="bi bi-bell"></i>
+			</a>
+		</li>
+		<li class="nav-item dropdown">
+			<a
+				class="nav-link dropdown-toggle"
+				href="#"
+				id="navbarDropdown"
+				role="button"
+				data-bs-toggle="dropdown"
+				aria-expanded="false"
+			>
+				<i class="bi bi-gear"></i>						
+			</a>
+			<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+				<li><a class="dropdown-item" href="#">Налагодження користувача</a></li>
+				<li><a class="dropdown-item" href="/guides/list">Довідники</a></li>
+				<li><hr class="dropdown-divider" /></li>
+				<li><a class="dropdown-item" href="#">Користувачи</a></li>
+			</ul>
+		</li>
+		<li class="nav-item dropdown">
+			<a
+				class="nav-link dropdown-toggle"
+				data-bs-toggle="dropdown"
+				href="#"
+				id="dropdown02"
+			>
+				<i class="bi bi-person-circle"></i>
+				<span sec:authorize="isAuthenticated()" th:text="${#authentication.getPrincipal().getFullname()}"></span>
+			</a>
+		</li>
+	</ul>
+</nav>

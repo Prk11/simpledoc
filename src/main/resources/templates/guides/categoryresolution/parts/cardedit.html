@@ -1,0 +1,43 @@
+<div
+	class="card"
+	th:object="${item}"
+	th:classappend="*{Deleted} ? ' card-delete'"
+>
+	<form name="Categoryresolution" method="post" th:action="@{/guides/categoryresolution/save}">
+		<input type="hidden" name="Id" th:value="*{Id}" />
+		<div class="card-body">
+			<div class="row">
+				<div class="col-1 fs-1">
+					<i class="bi bi-card-text"></i>
+				</div>
+				<div class="col">
+					<div class="card-title">
+						<input
+							type="text"
+							class=""
+							name="Name"
+							value="Нова категорія резолюції"
+							th:value="*{Name}"
+							autofocus
+						/>
+					</div>
+				</div>
+				<div class="col-1">
+					<div class="row">
+						<div class="col">
+							<button type="button" class="btn btn-link"
+								onclick="Categoryresolution.submit()"
+								title="Зберігти"
+							>
+								<i class="bi bi-save"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	<script>
+		window.scrollTo(0, Categoryresolution.scrollHeight);
+	</script>
+</div>

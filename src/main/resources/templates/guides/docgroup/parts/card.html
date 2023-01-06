@@ -1,0 +1,76 @@
+<div class="card" th:object="${dgItem}" 
+    th:classappend="*{Deleted} ? ' card-delete'">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-1 fs-1">
+                <select class="select-docgroup" name="Kind" disabled>
+                    <option value="" th:selected="*{Kind==null}" >
+                        &#xf3d1;
+                    </option>
+                    <option value="In" th:selected="*{{Kind}}==In">
+                        &#xF32F;
+                    </option>
+                    <option value="Let" th:selected="*{Kind==T(ua.od.psrv.simpledoc.server.models.data.DocgroupKind).Let}">
+                        &#xf4e1;
+                    </option>
+                    <option value="Out" th:selected="*{Kind==T(ua.od.psrv.simpledoc.server.models.data.DocgroupKind).Out}">
+                        &#xF42F;
+                    </option>
+                </select>               
+            </div>
+            <div class="col">
+                <div class="card-title">                    
+                    <a
+                        th:text="*{Name}"
+                        th:href="@{/guides/docgroup/list/{parent}(parent=*{Id})}"
+                        th:if="!*{Node}"
+                        class="text-uppercase fw-bold"
+                    />
+                    <span
+                        class=""
+                        th:if="*{Node}"
+                        th:text="*{Name}"
+                    >
+                    </span>
+                </div>
+                <div class="card-subtitle mb-2 text-muted row">
+                    <div class="col">
+                        <b>Ном. індекс:</b>
+                        <span th:text="*{Index}" class="fw-lighter"></span>
+                    </div>
+                    <div class="col">
+                        <b>Ост. номер:</b>
+                        <span class="fw-lighter">0</span>
+                    </div>
+                    <div class="col">
+                        <b>Наст. номер:</b>
+                        <span class="fw-lighter">0</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-1">
+                <div class="row">
+                    <div class="col">
+                        <a th:href="@{/guides/docgroup/edit/{id}(id=*{Id})}" title="Редагувати">
+                            <i class="bi bi-pen"></i>
+                        </a>
+                    </div>
+                </div>               
+                <div class="row" th:unless="*{Deleted}">
+                    <div class="col">
+                        <a th:href="@{/guides/docgroup/delete/{id}(id=*{Id})}" title="Видалити">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="row" th:if="*{Deleted}">
+                    <div class="col">
+                        <a th:href="@{/guides/docgroup/restore/{id}(id=*{Id})}" title="Відновити">
+                            <i class="bi bi-arrow-bar-up"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html layout:decorate="~{guides/template}">
+	<head>
+		<title>Перелік довідників</title>
+	</head>
+	<body>
+		<div layout:fragment="content">
+			<div class="row">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+                            <a href="/">Головна</a>
+                        </li>
+						<li class="breadcrumb-item">
+                            <a href="/guides/list">Довідники</a>
+                        </li>
+					</ol>
+				</nav>
+			</div>
+			<div class="row" layout:fragment="guide">
+				<div class="list-group">
+					<a
+						href="/guides/docgroup/list"
+						class="list-group-item list-group-item-action"
+						aria-current="true"
+					>
+						<div class="d-flex w-100 justify-content-between">
+							<h5 class="mb-1">Групи документів</h5>
+						</div>
+						<p class="mb-1">
+                            Цей довідник потрібен для ведення журналів 
+                            реєстрації документів.
+                        </p>
+					</a>
+					<a
+						href="#"
+						class="list-group-item list-group-item-action"
+						aria-current="true"
+					>
+						<div class="d-flex w-100 justify-content-between">
+							<h5 class="mb-1">Підрозділи та посадові особи</h5>
+						</div>
+						<p class="mb-1">
+                            Цей довідник потрібен для ведення підрозділів та 
+                            посадовців цього підприємства.
+                        </p>
+					</a>					
+					<a
+						href="#"
+						class="list-group-item list-group-item-action"
+						aria-current="true"
+					>
+						<div class="d-flex w-100 justify-content-between">
+							<h5 class="mb-1">Підприємства</h5>
+						</div>
+						<p class="mb-1">
+                            Цей довідник потрібен для ведення контрагентів-підприємств.
+                        </p>
+					</a>					
+					<a
+						href="/guides/citizen/list"
+						class="list-group-item list-group-item-action"
+						aria-current="true"
+					>
+						<div class="d-flex w-100 justify-content-between">
+							<h5 class="mb-1">Фізичні особи</h5>
+						</div>
+						<p class="mb-1">
+                            Цей довідник потрібен для ведення контрагентів-фізичних осіб.
+                        </p>
+					</a>					
+					<a
+						href="/guides/delivery/list"
+						class="list-group-item list-group-item-action"
+						aria-current="true"
+					>
+						<div class="d-flex w-100 justify-content-between">
+							<h5 class="mb-1">Види доставки</h5>
+						</div>
+						<p class="mb-1">
+                            Цей довідник потрібен для ведення видів доставки. 
+                            Листування, особиста доставка, єлектронною поштою, тощо.
+                        </p>
+					</a>					
+					<a
+						href="#"
+						class="list-group-item list-group-item-action"
+						aria-current="true"
+					>
+						<div class="d-flex w-100 justify-content-between">
+							<h5 class="mb-1">Рубрикатор</h5>
+						</div>
+						<p class="mb-1">
+                            Цей довідник потрібен для ведення додаткової 
+                            інформації щодо питань, якіх торкається зміст документу.
+                        </p>
+					</a>					
+					<a
+						href="/guides/socialstatus/"
+						class="list-group-item list-group-item-action"
+						aria-current="true"
+					>
+						<div class="d-flex w-100 justify-content-between">
+							<h5 class="mb-1">Соціальні статуси</h5>
+						</div>
+						<p class="mb-1">
+                            Цей довідник потрібен для ведення соціальних статусів громадян.
+                        </p>
+					</a>                    
+					<a
+						href="/guides/socialcategory/"
+						class="list-group-item list-group-item-action"
+						aria-current="true"
+					>
+						<div class="d-flex w-100 justify-content-between">
+							<h5 class="mb-1">Соціальні категорії</h5>
+						</div>
+						<p class="mb-1">
+                            Цей довідник потрібен для ведення соціальних категорій громадян.
+                        </p>
+					</a>                    
+					<a
+						href="/guides/categoryresolution/"
+						class="list-group-item list-group-item-action"
+						aria-current="true"
+					>
+						<div class="d-flex w-100 justify-content-between">
+							<h5 class="mb-1">Категорії резолюцій</h5>
+						</div>
+						<p class="mb-1">
+                            Цей довідник потрібен для надання резолюції категорії. 
+                            Найчастіше виникає при закритті резолюції, або дорученні
+                        </p>
+					</a>                    
+
+                    <!-- Зразок -->
+					<a href="#" class="list-group-item list-group-item-action disabled" aria-disabled="true">
+						<div class="d-flex w-100 justify-content-between">
+							<h5 class="mb-1">List group item heading</h5>
+							<small class="text-muted">Зразок</small>
+						</div>
+						<p class="mb-1">Some placeholder content in a paragraph.</p>
+						<small class="text-muted">And some muted small print.</small>
+					</a>
+
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

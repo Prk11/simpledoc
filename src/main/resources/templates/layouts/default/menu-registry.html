@@ -1,0 +1,11 @@
+<th:block th:each="dgItem : ${@Docgroups}">
+<li class="nav-item accordion-item">
+    <a class="nav-link p-3" href="#">
+        &nbsp; 
+        <i class="bi docgroup-in" th:if="${{dgItem.Kind}}==In"></i> 
+        <i class="bi docgroup-let" th:if="${{dgItem.Kind}}==Let"></i> 
+        <i class="bi docgroup-out" th:if="${{dgItem.Kind}}==Out"></i> 
+        [[${dgItem.Name}]]
+    </a>
+</li>
+</th:block>

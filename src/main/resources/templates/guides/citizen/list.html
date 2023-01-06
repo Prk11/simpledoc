@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html layout:decorate="~{guides/template}">
+	<head>
+		<title>Групи документів</title>
+	</head>
+	<body>
+		<div layout:fragment="content">
+			<div class="row">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="/">Головна</a>
+						</li>
+						<li class="breadcrumb-item">
+							<a href="/guides/list">Довідники</a>
+						</li>
+						<li class="breadcrumb-item">
+							<a href="/guides/citizen/list">Фізичні особи</a>
+						</li>
+						<li class="breadcrumb-item">
+							<a th:href="@{/guides/citizen/new}" title="Додати фізичну особу">
+								<i class="bi bi-plus-square"></i
+							></a>
+						</li>
+					</ol>
+				</nav>
+			</div>
+
+			<th:block th:each="item : ${list}">
+				<div
+					class="row"
+					th:insert="~{/guides/citizen/parts/card}"
+					th:unless="${edit==item.Id}"
+				></div>
+				<div
+					class="row"
+					th:insert="~{/guides/citizen/parts/cardedit}"
+					th:if="${edit==item.Id}"
+				></div>
+			</th:block>
+			<div
+				class="row"
+				th:insert="~{/guides/citizen/parts/cardedit}"
+				th:if="${item}"
+			></div>
+		</div>
+	</body>
+</html>

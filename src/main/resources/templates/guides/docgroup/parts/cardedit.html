@@ -1,0 +1,67 @@
+<div class="card card-edit" th:object="${oedit}">
+	<form name="Docgroup" method="post" th:action="@{/guides/docgroup/save}">
+        <input type="hidden" name="Id" th:value="*{Id}">
+        <input type="hidden" name="ParentId" th:value="${(oparent!=null) ? oparent.Id : '-1'}">
+		<div class="card-body">
+			<div class="row">
+				<div class="col-1 fs-1" >
+					<select
+						class="select-docgroup" autofocus
+						name="Kind" >
+						<option value="" th:selected="*{Kind==null}">&#xf3d1;</option>
+						<option value="In" th:selected="*{{Kind}}==In">&#xF32F;</option>
+						<option value="Let" th:selected="*{{Kind}}==Let">&#xf4e1;</option>
+						<option value="Out" th:selected="*{{Kind}}==Out">&#xF42F;</option>
+					</select>
+				</div>
+				<div class="col">
+					<div class="card-title">
+						<input
+							type="text"
+							name="Name"
+							th:value="*{Name}"
+							class="form-control"
+							placeholder="Назва журналу"
+							th:placeholder="#{docgroup.name}"							
+						/>
+					</div>
+					<div class="card-subtitle mb-2 text-muted row">
+						<div class="col">
+							<label for="Index" class="fw-bolder">Ном. індекс:</label>
+                            <input type="text" name="Index" th:value="*{Index}" class="form-control" />
+						</div>
+						<div class="col">
+							<label for="Lastnum" class="fw-bolder">Ост. номер:</label>
+                            <input type="text" name="Lastnum" value="1" th:value="*{getLastnum()}" class="form-control" />
+						</div>
+						<div class="col">
+							<label for="Nextnum" class="fw-bolder">Наст. номер:</label>
+                            <input type="text" name="Nextnum"  class="form-control" />
+						</div>
+					</div>
+                    <div class="card-subtitle mb-2 text-muted row">
+                        <div class="col">
+							<label for="Shablon" class="fw-bolder">Шаблон генерации номера:</label>
+                            <input type="text" name="Shablon" th:value="*{Shablon}" class="form-control" />
+                        </div>
+                    </div>
+				</div>
+				<div class="col-1">
+					<div class="row">
+						<div class="col">
+							<button type="button" class="btn btn-link"
+								onclick="Docgroup.submit()"
+								title="Зберігти"
+							>
+								<i class="bi bi-save"></i>
+							</button>
+						</div>
+					</div>					
+				</div>
+			</div>
+		</div>
+	</form>
+	<script>
+		window.scrollTo(0, Docgroup.scrollHeight);
+	</script>
+</div>

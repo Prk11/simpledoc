@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layouts/default/template}">
+	<head>
+		<title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">
+			SimpleDoc - Довідники
+		</title>
+	</head>
+	<body>
+		<div layout:fragment="content">
+			<div class="row">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="/guides/list">Довідники</a>
+						</li>
+					</ol>
+				</nav>
+			</div>
+			<div class="row" layout:fragment="guide">
+
+
+            </div>
+		</div>
+	</body>
+</html>

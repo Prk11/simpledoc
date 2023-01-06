@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html layout:decorate="~{guides/template}">
+	<head>
+		<title>Групи документів</title>
+	</head>
+	<body>
+		<div layout:fragment="content">
+			<div class="row">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="/">Головна</a>
+						</li>
+						<li class="breadcrumb-item">
+							<a href="/guides/list">Довідники</a>
+						</li>
+						<li class="breadcrumb-item">
+							<a href="/guides/docgroup/list">Групи документів</a>
+						</li>
+					</ol>
+				</nav>
+			</div>
+			<div class="row" layout:fragment="guide">
+				<div class="col">
+					<div class="breadcrumb fw-lighter" th:if="${oparent!=null}">
+						<div class="breadcrumb-item">
+							<a href="/guides/docgroup/list">Групи документів</a>
+						</div>
+						<div
+							th:each="pItem : ${oparent.getParents()}"
+							class="breadcrumb-item"
+						>
+							<a
+								th:href="@{/guides/docgroup/list/{parent}(parent=${pItem.Id})}"
+								th:text="${pItem.Name}"
+							></a>
+						</div>
+						<div class="breadcrumb-item">							
+							<a
+								th:href="@{/guides/docgroup/new/{parent}(parent=${oparent.Id})}"
+								title="Додати групу"
+							>
+								<i class="bi bi-plus-square"></i
+							></a>
+						</div>
+					</div>
+					<div class="breadcrumb fw-lighter" th:if="${oparent}==null">
+						<div class="breadcrumb-item">
+							<a href="/guides/docgroup/list">Групи документів</a>
+						</div>
+						<div class="breadcrumb-item">							
+							<a
+								th:href="@{/guides/docgroup/new}"
+								title="Додати журнал"
+							>
+								<i class="bi bi-plus-square"></i
+							></a>
+						</div>
+					</div>
+					<th:block
+						th:each="dgItem : ${docgroups}"
+						th:with="editState=${(state=='view') or (state=='edit' and dgItem.Id!=edit)}"
+					>
+						<div
+							class="row"
+							th:insert="/guides/docgroup/parts/card"
+							th:if="${editState}"
+						></div>
+						<div
+							class="row"
+							th:insert="/guides/docgroup/parts/cardedit"
+							th:unless="${editState}"
+						></div>
+					</th:block>
+					<div
+						class="row"
+						th:insert="/guides/docgroup/parts/cardedit"
+						th:if="${(state=='edit') and (edit==null)}"
+					></div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
