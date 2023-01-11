@@ -58,7 +58,7 @@ public class Organization implements Serializable {
 		return this.Code;
 	}
 
-	protected void setDeleted(boolean Deleted) {
+	public void setDeleted(boolean Deleted) {
 		this.Deleted = Deleted;
 	}
 

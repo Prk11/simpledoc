@@ -9,18 +9,22 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
+import ua.od.psrv.simpledoc.server.models.data.Categoryresolution;
 import ua.od.psrv.simpledoc.server.models.data.Citizen;
 import ua.od.psrv.simpledoc.server.models.data.Citizencategory;
 import ua.od.psrv.simpledoc.server.models.data.Citizenstatus;
 import ua.od.psrv.simpledoc.server.models.data.Delivery;
 import ua.od.psrv.simpledoc.server.models.data.Docgroup;
 import ua.od.psrv.simpledoc.server.models.data.DocgroupKind;
+import ua.od.psrv.simpledoc.server.models.data.Organization;
 import ua.od.psrv.simpledoc.server.models.data.Userentry;
+import ua.od.psrv.simpledoc.server.repository.CategoryresolutionRepository;
 import ua.od.psrv.simpledoc.server.repository.CitizenRepository;
 import ua.od.psrv.simpledoc.server.repository.CitizencategoryRepository;
 import ua.od.psrv.simpledoc.server.repository.CitizenstatusRepository;
 import ua.od.psrv.simpledoc.server.repository.DeliveryRepository;
 import ua.od.psrv.simpledoc.server.repository.DocgroupRepository;
+import ua.od.psrv.simpledoc.server.repository.OrganizationRepository;
 import ua.od.psrv.simpledoc.server.repository.UsersRepository;
 
 @Service
@@ -43,8 +47,14 @@ public class DataInitializer implements CommandLineRunner{
     private CitizenstatusRepository citizenstatusies;
     
     @Autowired
+    private CategoryresolutionRepository categoryresolutions;
+    
+    @Autowired
     private CitizenRepository citizens;
     
+    @Autowired
+    private OrganizationRepository organizations;
+
     @Autowired
     private PasswordEncoder passwordEncoder;
     
@@ -179,5 +189,25 @@ public class DataInitializer implements CommandLineRunner{
         citizen1.setStatus(citizen1Statuses);
         citizen1 = citizens.save(citizen1);
 
+        // Categoryresolution
+        Categoryresolution categoryresolution1 = new Categoryresolution();
+        categoryresolution1.setName("Звичайний");
+        categoryresolution1 = categoryresolutions.save(categoryresolution1);
+        
+        Categoryresolution categoryresolution2 = new Categoryresolution();
+        categoryresolution2.setName("Терміновий");
+        categoryresolution2 = categoryresolutions.save(categoryresolution2);
+
+         
+        Organization org1 = new Organization();
+        org1.setName("Рога та копита");
+        org1.setCode("00000000");
+        org1 = organizations.save(org1);
+        
+        Organization org2 = new Organization();
+        org2.setName("прокат самокатів");
+        org2.setCode("12345678");
+        org2 = organizations.save(org2);
+        
     }
 }

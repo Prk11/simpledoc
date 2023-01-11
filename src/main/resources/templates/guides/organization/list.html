@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html layout:decorate="~{guides/template}">
 	<head>
-		<title>Фізичні особи</title>
+		<title>Юридичні особи</title>
 	</head>
 	<body>
 		<div layout:fragment="content">
@@ -15,10 +15,10 @@
 							<a href="/guides/list">Довідники</a>
 						</li>
 						<li class="breadcrumb-item">
-							<a href="/guides/citizen/list">Фізичні особи</a>
+							<a href="/guides/organization/list">Юридичні особи</a>
 						</li>
 						<li class="breadcrumb-item">
-							<a th:href="@{/guides/citizen/new}" title="Додати фізичну особу">
+							<a th:href="@{/guides/organization/new}" title="Додати юридичну особу">
 								<i class="bi bi-plus-square"></i
 							></a>
 						</li>
@@ -29,18 +29,18 @@
 			<th:block th:each="item : ${list}">
 				<div
 					class="row"
-					th:insert="~{/guides/citizen/parts/card}"
+					th:insert="~{/guides/organization/parts/card}"
 					th:unless="${edit==item.Id}"
 				></div>
 				<div
 					class="row"
-					th:insert="~{/guides/citizen/parts/cardedit}"
+					th:insert="~{/guides/organization/parts/cardedit}"
 					th:if="${edit==item.Id}"
 				></div>
 			</th:block>
 			<div
 				class="row"
-				th:insert="~{/guides/citizen/parts/cardedit}"
+				th:insert="~{/guides/organization/parts/cardedit}"
 				th:if="${item}"
 			></div>
 		</div>
