@@ -1,7 +1,9 @@
 package ua.od.psrv.simpledoc.server.models.data;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.Entity;
@@ -23,84 +25,122 @@ public class Rubric implements Serializable {
 	/** Идентификатор записи */
 	@Id
 	@GeneratedValue
-	private int Id;
+	private int id;
 
 	/** Код тематики вопроса (В некоторіх случаях обязательное) */
-	private String Code;
+	private String code;
 
 	/** Наименование рубрики */
-	private String Name;
+	private String name;
 
 	/**
 	 * Признак удаленой записи. Нужен чтобы не удалять полностью документ из базы
 	 */
-	private boolean Deleted;
+	private boolean deleted;
+	
+	/** Признак елемента выбора. Лист */
+	private boolean node;
+
+	public boolean isNode() {
+		return node;
+	}
+
+	public void setNode(boolean node) {
+		this.node = node;
+	}
 
 	/** Ссілка на родительскую папку */
 	@ManyToOne(fetch = FetchType.LAZY)
-	private Rubric Parent;
+	private Rubric parent;
 
 	/** Перечень дочерних рубрик */
-	@OneToMany(mappedBy = "Parent")
-	private Set<Rubric> Chields;
+	@OneToMany(mappedBy = "parent")
+	private Set<Rubric> chields;
 
 	public Rubric() {
-		this.Id = -1;
-		this.Code = "";
-		this.Name = "";
-		this.Deleted = false;
-		this.Parent = null;
-		this.Chields = new HashSet<>();
+		this.id = -1;
+		this.code = "";
+		this.name = "";
+		this.deleted = false;
+		this.parent = null;
+		this.node = false;
+		this.chields = new HashSet<>();
 	}
 
-	public Rubric(Rubric Parent) {
+	public Rubric(Rubric parent) {
 		this();
-		this.Parent = Parent;
+		this.parent = parent;
+		this.code = parent.getCode()+"-?";
 	}
 
 	public int getId() {
-		return this.Id;
+		return this.id;
 	}
 
 	public String getCode() {
-		return this.Code;
+		return this.code;
 	}
 
 	public void setCode(String code) {
-		this.Code = code;
+		this.code = code;
 	}
 
 	public String getName() {
-		return this.Name;
+		return this.name;
 	}
 
 	public void setName(String name) {
-		this.Name = name;
+		this.name = name;
 	}
 
 	public boolean isDeleted() {
-		return this.Deleted;
+		return this.deleted;
 	}
 
 	public void setDeleted(boolean deleted) {
-		this.Deleted = deleted;
+		this.deleted = deleted;
 	}
 
 	public Rubric getParent() {
-		return this.Parent;
+		return this.parent;
 	}
 
 	protected void setParent(Rubric parent) {
-		this.Parent = parent;
+		this.parent = parent;
 	}
 
 	public Set<Rubric> getChields() {
-		return this.Chields;
+		return this.chields;
 	}
+
+	public List<Rubric> getParents() {
+		List<Rubric> result=new ArrayList<>();
+		result.add(this);
+		Rubric cursor = this.getParent();
+		while(cursor!=null) {
+			result.add(0,cursor);
+			cursor = cursor.getParent();
+		}
+		return result;
+	}
+
 
 	@Override
 	public String toString() {
 		return this.getName();
 	}
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+			Rubric other = (Rubric) obj;
+        if (id != other.id)
+            return false;
+        return true;
+    }
 }

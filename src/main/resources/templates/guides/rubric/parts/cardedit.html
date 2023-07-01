@@ -1,0 +1,64 @@
+<div
+	class="card card-edit"
+	th:object="${rItem}"
+	th:classappend="*{Deleted} ? ' card-delete'"
+>
+	<form method="post" th:action="@{/guides/rubric/save}">
+		<input type="hidden" name="Id" th:value="*{Id}" />
+		<input
+			type="hidden"
+			name="ParentId"
+			th:value="${(oparent!=null) ? oparent.Id : '-1'}"
+		/>
+		<div class="card-body">
+			<div class="row">
+				<div class="col-1 fs-1">
+					<select class="select-rubric" autofocus name="Node">
+						<option value="false" th:selected="!*{Node}">&#xf3d1;</option>
+						<option value="true" th:selected="*{Node}">&#xF265;</option>
+					</select>
+				</div>
+				<div class="col">
+					<div class="card-title">
+						<input
+							type="text"
+							name="Name"
+							th:value="*{Name}"
+							class="form-control"
+							placeholder="Назва рубрики"
+							th:placeholder="#{rubric.name}"
+						/>
+					</div>
+					<div class="card-subtitle mb-2 text-muted row">
+						<div class="col">
+							<label for="Code" class="fw-bolder">Ном. індекс:</label>
+							<input
+								type="text"
+								name="Code"
+								th:value="*{Code}"
+								class="form-control"
+							/>
+						</div>
+					</div>
+				</div>
+				<div class="col-1">
+					<div class="row">
+						<div class="col">
+							<button
+								type="button"
+								class="btn btn-link"
+								onclick="rubric.submit()"
+								title="Зберігти"
+							>
+								<i class="bi bi-save"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	<script>
+		window.scrollTo(0, rubric.scrollHeight);
+	</script>
+</div>

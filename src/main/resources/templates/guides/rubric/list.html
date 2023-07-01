@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html layout:decorate="~{guides/template}">
+	<head>
+		<title>Рубрикатор</title>
+	</head>
+	<body>
+		<div layout:fragment="content">
+			<div class="row">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a th:href="@{/}">Головна</a>
+						</li>
+						<li class="breadcrumb-item">
+							<a th:href="@{/guides/list}">Довідники</a>
+						</li>
+						<li class="breadcrumb-item">
+							<a th:href="@{/guides/rubric/}">Рубрикатор</a>
+						</li>
+					</ol>
+				</nav>
+			</div>
+			<div class="row" layout:fragment="guide">
+				<div class="col">
+					<div class="breadcrumb fw-lighter" th:if="${oparent!=null}">
+						<div class="breadcrumb-item">
+							<a th:href="@{/guides/rubric/list}">Рубрикатор</a>
+						</div>
+						<div
+							th:each="pItem : ${oparent.getParents()}"
+							class="breadcrumb-item"
+						>
+							<a
+								th:href="@{/guides/rubric/list/{parent}(parent=${pItem.Id})}"
+								th:text="${pItem.Name}"
+							></a>
+						</div>
+						<div class="breadcrumb-item">
+							<a
+								th:href="@{/guides/rubric/new/{parent}(parent=${oparent.Id})}"
+								title="Додати рубрикатор"
+							>
+								<i class="bi bi-plus-square"></i
+							></a>
+						</div>
+					</div>
+					<div class="breadcrumb fw-lighter" th:if="${oparent}==null">
+						<div class="breadcrumb-item">
+							<a th:href="@{/guides/rubric/list}">Рубрикатор</a>
+						</div>
+						<div class="breadcrumb-item">
+							<a th:href="@{/guides/rubric/new}" title="Додати рубрикатор">
+								<i class="bi bi-plus-square"></i>
+							</a>
+						</div>
+					</div>
+					<th:block
+						th:each="rItem : ${rubrics}"
+						th:with="editState=${(state=='view') or (state=='edit' and rItem.Id!=edit)}"
+					>
+						<div
+							th:if="${editState}"
+							class="row"
+							th:insert="~{/guides/rubric/parts/card}"
+						></div>
+						<div
+							th:unless="${editState}"
+							class="row"
+							th:insert="~{/guides/rubric/parts/cardedit}"
+						></div>
+					</th:block>
+					<div
+						class="row"
+						th:insert="~{/guides/rubric/parts/cardedit}"
+						th:if="${(state=='edit') and (edit==null)}"
+					></div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

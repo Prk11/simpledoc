@@ -117,3 +117,22 @@ body {
   margin-bottom: 3px;
 }
 
+.select-rubric {
+  font-family: bootstrap-icons;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem ;
+  width: 150%;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border: 0;
+  margin-left: -0.5rem;
+  text-align: center;
+}
+
+.rubric-folder::before {
+  content: "\f3d1";
+} 
+
+.rubric-item::before {
+  content: "\F265";
+} 

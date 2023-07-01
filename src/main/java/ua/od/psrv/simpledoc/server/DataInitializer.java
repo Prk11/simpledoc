@@ -17,6 +17,7 @@ import ua.od.psrv.simpledoc.server.models.data.Delivery;
 import ua.od.psrv.simpledoc.server.models.data.Docgroup;
 import ua.od.psrv.simpledoc.server.models.data.DocgroupKind;
 import ua.od.psrv.simpledoc.server.models.data.Organization;
+import ua.od.psrv.simpledoc.server.models.data.Rubric;
 import ua.od.psrv.simpledoc.server.models.data.Userentry;
 import ua.od.psrv.simpledoc.server.repository.CategoryresolutionRepository;
 import ua.od.psrv.simpledoc.server.repository.CitizenRepository;
@@ -25,6 +26,7 @@ import ua.od.psrv.simpledoc.server.repository.CitizenstatusRepository;
 import ua.od.psrv.simpledoc.server.repository.DeliveryRepository;
 import ua.od.psrv.simpledoc.server.repository.DocgroupRepository;
 import ua.od.psrv.simpledoc.server.repository.OrganizationRepository;
+import ua.od.psrv.simpledoc.server.repository.RubricRepository;
 import ua.od.psrv.simpledoc.server.repository.UsersRepository;
 
 @Service
@@ -54,6 +56,9 @@ public class DataInitializer implements CommandLineRunner{
     
     @Autowired
     private OrganizationRepository organizations;
+
+    @Autowired
+    private RubricRepository rubrics;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -198,6 +203,7 @@ public class DataInitializer implements CommandLineRunner{
         categoryresolution2.setName("Терміновий");
         categoryresolution2 = categoryresolutions.save(categoryresolution2);
 
+        // Organization
          
         Organization org1 = new Organization();
         org1.setName("Рога та копита");
@@ -209,5 +215,80 @@ public class DataInitializer implements CommandLineRunner{
         org2.setCode("12345678");
         org2 = organizations.save(org2);
         
+        //Rubric
+
+        Rubric rub1f = new Rubric();
+        rub1f.setNode(false);
+        rub1f.setName("Перелік питань"); 
+        rub1f.setCode("");
+        rub1f = rubrics.save(rub1f);
+
+        Rubric rub2f = new Rubric();
+        rub2f.setNode(false);
+        rub2f.setName("Вид звернень"); 
+        rub2f.setCode("ВЗ");
+        rub2f = rubrics.save(rub2f);
+
+        Rubric rub3n = new Rubric();
+        rub3n.setNode(true);
+        rub3n.setName("Інше"); 
+        rub3n.setCode("інш");
+        rub3n = rubrics.save(rub3n);
+
+        Rubric rub4f = new Rubric();
+        rub4f.setNode(false);
+        rub4f.setName("Пуста папка"); 
+        rub4f.setCode("");
+        rub4f = rubrics.save(rub4f);
+
+        Rubric rub1f1f = new Rubric(rub1f);
+        rub1f1f.setNode(false);
+        rub1f1f.setName("Тестова вкладена папка питань"); 
+        rub1f1f.setCode("твпп");
+        rub1f1f = rubrics.save(rub1f1f);
+
+        Rubric rub1f1f1n = new Rubric(rub1f1f);
+        rub1f1f1n.setNode(true);
+        rub1f1f1n.setName("Тестове питання 1"); 
+        rub1f1f1n.setCode("твпп-1");
+        rub1f1f1n = rubrics.save(rub1f1f1n);
+
+        Rubric rub1f1f2n = new Rubric(rub1f1f);
+        rub1f1f2n.setNode(true);
+        rub1f1f2n.setName("Тестове питання 2"); 
+        rub1f1f2n.setCode("твпп-2");
+        rub1f1f2n = rubrics.save(rub1f1f2n);
+
+        Rubric rub1f1n = new Rubric(rub1f);
+        rub1f1n.setNode(true);
+        rub1f1n.setName("ЖКГ"); 
+        rub1f1n.setCode("");
+        rub1f1n = rubrics.save(rub1f1n);
+
+        Rubric rub1f2n = new Rubric(rub1f);
+        rub1f2n.setNode(true);
+        rub1f2n.setName("Освіта"); 
+        rub1f2n.setCode("");
+        rub1f2n = rubrics.save(rub1f2n);
+
+        Rubric rub1f3n = new Rubric(rub1f);
+        rub1f3n.setNode(true);
+        rub1f3n.setName("Охорона здоров'я"); 
+        rub1f3n.setCode("");
+        rub1f3n = rubrics.save(rub1f3n);
+
+        Rubric rub2f1n = new Rubric(rub2f);
+        rub2f1n.setNode(true);
+        rub2f1n.setName("Заява"); 
+        rub2f1n.setCode("ВП-1");
+        rub2f1n = rubrics.save(rub2f1n);
+
+        Rubric rub2f2n = new Rubric(rub2f);
+        rub2f2n.setNode(true);
+        rub2f2n.setName("Скарга"); 
+        rub2f2n.setCode("ВП-2");
+        rub2f2n = rubrics.save(rub2f2n);
+
+
     }
 }

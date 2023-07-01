@@ -1,0 +1,63 @@
+<div
+	class="card"
+	th:object="${rItem}"
+	th:classappend="*{Deleted} ? ' card-delete'"
+>
+	<div class="card-body">
+		<div class="row">
+			<div class="col-1 fs-1">
+				<i class="bi bi-folder" th:if="!*{Node}"></i>
+				<i class="bi bi-chat-square" th:if="*{Node}"></i>
+			</div>
+			<div class="col">
+				<div class="card-title">
+					<a
+						th:text="*{Name}"
+						th:href="@{/guides/rubric/list/{parent}(parent=*{Id})}"
+						th:if="!*{Node}"
+						class="text-uppercase fw-bold"
+					/>
+					<span class="" th:if="*{Node}" th:text="*{Name}"> </span>
+				</div>
+				<div class="card-subtitle mb-2 text-muted row">
+					<div class="col">
+						<b>Код:</b>
+						<span th:text="*{Code}" class="fw-lighter"></span>
+					</div>
+				</div>
+			</div>
+			<div class="col-1">
+				<div class="row">
+					<div class="col">
+						<a
+							th:href="@{/guides/rubric/edit/{id}(id=*{Id})}"
+							title="Редагувати"
+						>
+							<i class="bi bi-pen"></i>
+						</a>
+					</div>
+				</div>
+				<div class="row" th:unless="*{Deleted}">
+					<div class="col">
+						<a
+							th:href="@{/guides/rubric/delete/{id}(id=*{Id})}"
+							title="Видалити"
+						>
+							<i class="bi bi-trash"></i>
+						</a>
+					</div>
+				</div>
+				<div class="row" th:if="*{Deleted}">
+					<div class="col">
+						<a
+							th:href="@{/guides/rubric/restore/{id}(id=*{Id})}"
+							title="Відновити"
+						>
+							<i class="bi bi-arrow-bar-up"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
