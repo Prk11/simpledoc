@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Enumerated;
@@ -51,6 +52,7 @@ public class Docgroup implements Serializable {
 	private DocgroupKind kind;
 
 	/** Индекс по номенклатуре. Необходим для генерации номера */
+	@Column(name = "index_num")
 	private String index;
 
 	/** Название журнала */
